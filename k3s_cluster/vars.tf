@@ -49,6 +49,11 @@ variable "PATH_TO_PRIVATE_KEY" {
   description = "Path to your private key"
 }
 
+variable "kubeconfig_secret_version" {
+  type        = string
+  default     = "v1"
+}
+
 variable "vpc_id" {
   type        = string
   description = "The vpc id"
