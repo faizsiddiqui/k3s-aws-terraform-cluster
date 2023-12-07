@@ -64,6 +64,11 @@ variable "my_public_ip_cidr" {
   description = "My public ip CIDR"
 }
 
+variable "setup_external_ip" {
+  type    = bool
+  default = false
+}
+
 variable "install_nginx_ingress" {
   type    = bool
   default = true

@@ -154,13 +154,17 @@ fi
 k3s_install_params=("--tls-san ${k3s_tls_san}")
 %{ if k3s_subnet != "default_route_table" } 
 local_ip=$(ip -4 route ls ${k3s_subnet} | grep -Po '(?<=src )(\S+)')
-public_ip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
 flannel_iface=$(ip -4 route ls ${k3s_subnet} | grep -Po '(?<=dev )(\S+)')
 
 k3s_install_params+=("--node-ip $local_ip")
-k3s_install_params+=("--node-external-ip $public_ip")
 k3s_install_params+=("--advertise-address $local_ip")
 k3s_install_params+=("--flannel-iface $flannel_iface")
+%{ endif }
+
+%{ if setup_external_ip }
+public_ip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
+
+k3s_install_params+=("--node-external-ip $public_ip")
 k3s_install_params+=("--flannel-backend wireguard-native")
 k3s_install_params+=("--flannel-external-ip")
 %{ endif }

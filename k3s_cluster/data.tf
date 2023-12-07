@@ -76,6 +76,7 @@ data "cloudinit_config" "k3s_server" {
       is_k3s_server                    = true,
       install_node_termination_handler = var.install_node_termination_handler,
       node_termination_handler_release = var.node_termination_handler_release,
+      setup_external_ip                = var.setup_external_ip,
       install_nginx_ingress            = var.install_nginx_ingress,
       nginx_ingress_release            = var.nginx_ingress_release,
       install_certmanager              = var.install_certmanager,
