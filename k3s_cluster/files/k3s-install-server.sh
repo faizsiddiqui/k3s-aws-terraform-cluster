@@ -173,6 +173,8 @@ provider_id="$(curl -s http://169.254.169.254/latest/meta-data/placement/availab
 k3s_install_params+=("--kubelet-arg cloud-provider=external")
 k3s_install_params+=("--kubelet-arg provider-id=aws:///$provider_id")
 
+k3s_install_params+=("--secrets-encryption")
+
 %{ if install_nginx_ingress } 
 k3s_install_params+=("--disable traefik")
 %{ endif }
