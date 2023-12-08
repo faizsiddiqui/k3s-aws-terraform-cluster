@@ -38,6 +38,7 @@ resource "aws_autoscaling_group" "k3s_servers_asg" {
   health_check_grace_period = 300
   health_check_type         = "EC2"
   force_delete              = true
+  termination_policies      = ["OldestLaunchConfiguration", "OldestInstance", "ClosestToNextInstanceHour", "Default"]
 
   dynamic "tag" {
     for_each = local.global_tags
