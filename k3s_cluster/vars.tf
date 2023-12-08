@@ -50,8 +50,8 @@ variable "PATH_TO_PRIVATE_KEY" {
 }
 
 variable "kubeconfig_secret_version" {
-  type        = string
-  default     = "v1"
+  type    = string
+  default = "v1"
 }
 
 variable "vpc_id" {
