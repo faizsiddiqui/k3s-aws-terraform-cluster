@@ -3,6 +3,7 @@
 check_os() {
   name=$(cat /etc/os-release | grep ^NAME= | sed 's/"//g')
   clean_name=$${name#*=}
+  arch=$(uname -m)
 
   version=$(cat /etc/os-release | grep ^VERSION_ID= | sed 's/"//g')
   clean_version=$${version#*=}
@@ -41,7 +42,8 @@ if [[ "$operating_system" == "ubuntu" ]]; then
   apt-get update
   apt-get install -y software-properties-common unzip nfs-common jq
   DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
-  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-$arch.zip" -o "awscliv2.zip"
   unzip awscliv2.zip
   sudo ./aws/install
   rm -rf aws awscliv2.zip
